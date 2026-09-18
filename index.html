@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Everton Patinetes</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f7f6;
+      color: #173b32;
+    }
+
+    .app {
+      max-width: 430px;
+      margin: auto;
+      min-height: 100vh;
+      background: white;
+    }
+
+    header {
+      background: #0d5c48;
+      color: white;
+      padding: 28px 20px;
+      border-radius: 0 0 24px 24px;
+    }
+
+    header h1 {
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      opacity: .85;
+      font-size: 14px;
+    }
+
+    .saldo {
+      margin: 18px;
+      padding: 20px;
+      background: #e8f4ef;
+      border-radius: 18px;
+    }
+
+    .saldo small {
+      color: #55736a;
+    }
+
+    .saldo h2 {
+      font-size: 28px;
+      margin: 8px 0 15px;
+    }
+
+    button {
+      border: 0;
+      background: #0d5c48;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: bold;
+    }
+
+    .resumo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 18px;
+    }
+
+    .box {
+      padding: 16px;
+      background: #f4f7f6;
+      border-radius: 15px;
+    }
+
+    .box small {
+      color: #71827d;
+    }
+
+    .box strong {
+      display: block;
+      margin-top: 7px;
+      font-size: 18px;
+    }
+
+    section {
+      padding: 0 18px 90px;
+    }
+
+    section h3 {
+      margin: 22px 0 14px;
+    }
+
+    .patinete {
+      border: 1px solid #e1e8e5;
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 15px;
+    }
+
+    .patinete img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 14px;
+      background: #ddd;
+    }
+
+    .patinete h4 {
+      margin: 12px 0 6px;
+      font-size: 19px;
+    }
+
+    .patinete p {
+      color: #65746f;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .info {
+      display: flex;
+      justify-content: space-between;
+      margin: 12px 0;
+    }
+
+    nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(430px, 100%);
+      background: white;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 5px;
+    }
+
+    nav span {
+      font-size: 12px;
+      color: #61716c;
+      text-align: center;
+    }
+
+    nav span:first-child {
+      color: #0d5c48;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <header>
+      <h1>Olá, Everton 👋</h1>
+      <p>Acompanhe seus patinetes e seus investimentos</p>
+    </header>
+
+    <div class="saldo">
+      <small>Saldo disponível</small>
+      <h2>R$ 1.248,75</h2>
+      <button onclick="alert('Área de saque')">Sacar</button>
+    </div>
+
+    <div class="resumo">
+      <div class="box">
+        <small>Ganhos acumulados</small>
+        <strong>R$ 248,75</strong>
+      </div>
+
+      <div class="box">
+        <small>Total investido</small>
+        <strong>R$ 1.000,00</strong>
+      </div>
+    </div>
+
+    <section>
+      <h3>Meus patinetes</h3>
+
+      <div class="patinete">
+
+        <img src="https://images.unsplash.com/photo-1592119432220-0a5c0c2e5c7b?auto=format&fit=crop&w=900&q=80">
+
+        <h4>🛴 PAT-001 — Patinete Urbano</h4>
+
+        <p>Participação ativa</p>
+
+        <div class="info">
+          <span>Valor da cota</span>
+          <strong>R$ 200,00</strong>
+        </div>
+
+        <div class="info">
+          <span>Prazo</span>
+          <strong>20 dias</strong>
+        </div>
+
+        <button onclick="alert('Detalhes do PAT-001')">
+          Ver detalhes
+        </button>
+
+      </div>
+
+      <div class="patinete">
+
+        <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=900&q=80">
+
+        <h4>🛴 PAT-002 — Patinete City</h4>
+
+        <p>Disponível</p>
+
+        <div class="info">
+          <span>Valor da cota</span>
+          <strong>R$ 300,00</strong>
+        </div>
+
+        <div class="info">
+          <span>Prazo</span>
+          <strong>20 dias</strong>
+        </div>
+
+        <button onclick="alert('Detalhes do PAT-002')">
+          Ver detalhes
+        </button>
+
+      </div>
+
+    </section>
+
+    <nav>
+      <span>⌂<br>Início</span>
+      <span>🛴<br>Patinetes</span>
+      <span>💰<br>Carteira</span>
+      <span>🔔<br>Ofertas</span>
+      <span>☰<br>Menu</span>
+    </nav>
+
+  </div>
+
+</body>
+</html>
