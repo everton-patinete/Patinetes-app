@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - Everton Patinetes</title>
+
+<style>
+body{
+  font-family:Arial,sans-serif;
+  background:#f3f6f5;
+  color:#173b32;
+  margin:0;
+  padding:20px;
+}
+
+.container{
+  max-width:430px;
+  margin:auto;
+}
+
+h1{
+  background:#0d5c48;
+  color:white;
+  padding:20px;
+  border-radius:18px;
+}
+
+.card{
+  background:white;
+  padding:18px;
+  margin-top:15px;
+  border-radius:18px;
+}
+
+label{
+  display:block;
+  margin-top:15px;
+  font-weight:bold;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  margin-top:6px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  font-size:16px;
+}
+
+button{
+  width:100%;
+  border:0;
+  background:#0d5c48;
+  color:white;
+  padding:14px;
+  border-radius:12px;
+  margin-top:18px;
+  font-weight:bold;
+  font-size:16px;
+}
+
+.aviso{
+  background:#fff4d8;
+  padding:15px;
+  border-radius:12px;
+  margin-top:15px;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>⚙️ Administração</h1>
+
+<div class="aviso">
+Este painel é um protótipo. Os valores são demonstrativos.
+</div>
+
+<div class="card">
+
+<h2>🛴 Patinete</h2>
+
+<label>Nome do patinete</label>
+<input id="nome" value="Patinete Urbano">
+
+<label>Valor da cota</label>
+<input id="valor" type="number" value="200">
+
+<label>Prazo em dias</label>
+<input id="prazo" type="number" value="20">
+
+<label>Ganho demonstrativo</label>
+<input id="ganho" type="number" value="248.75">
+
+<button onclick="salvar()">
+Salvar alterações
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>🎁 Oferta</h2>
+
+<label>Nome da oferta</label>
+<input id="oferta" value="Oferta especial">
+
+<label>Valor da oferta</label>
+<input id="valorOferta" type="number" value="200">
+
+<button onclick="salvarOferta()">
+Salvar oferta
+</button>
+
+</div>
+
+<div id="mensagem"></div>
+
+</div>
+
+<script>
+
+function salvar(){
+
+const dados = {
+  nome: document.getElementById("nome").value,
+  valor: document.getElementById("valor").value,
+  prazo: document.getElementById("prazo").value,
+  ganho: document.getElementById("ganho").value
+};
+
+localStorage.setItem("patineteDados", JSON.stringify(dados));
+
+document.getElementById("mensagem").innerHTML =
+'<div class="aviso">✅ Alterações salvas neste dispositivo.</div>';
+
+}
+
+function salvarOferta(){
+
+const oferta = {
+  nome: document.getElementById("oferta").value,
+  valor: document.getElementById("valorOferta").value
+};
+
+localStorage.setItem("ofertaDados", JSON.stringify(oferta));
+
+document.getElementById("mensagem").innerHTML =
+'<div class="aviso">✅ Oferta salva neste dispositivo.</div>';
+
+}
+
+</script>
+
+</body>
+</html>
