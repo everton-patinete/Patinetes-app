@@ -14,15 +14,16 @@
     }
 
     body {
-      background: #f4f7f6;
+      background: #f3f6f5;
       color: #173b32;
     }
 
     .app {
       max-width: 430px;
-      margin: auto;
       min-height: 100vh;
+      margin: auto;
       background: white;
+      padding-bottom: 80px;
     }
 
     header {
@@ -38,8 +39,17 @@
     }
 
     header p {
-      opacity: .85;
       font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .tela {
+      display: none;
+      padding: 18px;
+    }
+
+    .tela.ativa {
+      display: block;
     }
 
     .saldo {
@@ -65,6 +75,7 @@
       padding: 12px 18px;
       border-radius: 12px;
       font-weight: bold;
+      cursor: pointer;
     }
 
     .resumo {
@@ -76,7 +87,7 @@
 
     .box {
       padding: 16px;
-      background: #f4f7f6;
+      background: #f3f6f5;
       border-radius: 15px;
     }
 
@@ -90,19 +101,11 @@
       font-size: 18px;
     }
 
-    section {
-      padding: 0 18px 90px;
-    }
-
-    section h3 {
-      margin: 22px 0 14px;
-    }
-
     .patinete {
       border: 1px solid #e1e8e5;
       border-radius: 18px;
       padding: 14px;
-      margin-bottom: 15px;
+      margin-top: 15px;
     }
 
     .patinete img {
@@ -110,24 +113,38 @@
       height: 170px;
       object-fit: cover;
       border-radius: 14px;
-      background: #ddd;
     }
 
-    .patinete h4 {
+    .patinete h3 {
       margin: 12px 0 6px;
-      font-size: 19px;
     }
 
     .patinete p {
       color: #65746f;
       font-size: 14px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
-    .info {
+    .linha {
       display: flex;
       justify-content: space-between;
-      margin: 12px 0;
+      margin: 10px 0;
+    }
+
+    .oferta {
+      background: #fff4d8;
+      padding: 18px;
+      border-radius: 18px;
+      margin-top: 15px;
+    }
+
+    .oferta h3 {
+      margin-bottom: 8px;
+    }
+
+    .voltar {
+      background: #555;
+      margin-top: 12px;
     }
 
     nav {
@@ -140,38 +157,54 @@
       border-top: 1px solid #ddd;
       display: flex;
       justify-content: space-around;
-      padding: 12px 5px;
+      padding: 10px 4px;
+      z-index: 100;
     }
 
-    nav span {
-      font-size: 12px;
+    nav button {
+      background: transparent;
       color: #61716c;
-      text-align: center;
+      padding: 5px;
+      font-size: 12px;
     }
 
-    nav span:first-child {
+    nav button.ativo {
       color: #0d5c48;
       font-weight: bold;
+    }
+
+    .info {
+      background: #f3f6f5;
+      padding: 15px;
+      border-radius: 15px;
+      margin-top: 15px;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="app">
+<div class="app">
 
-    <header>
-      <h1>Olá, Everton 👋</h1>
-      <p>Acompanhe seus patinetes e seus investimentos</p>
-    </header>
+  <header>
+    <h1>Olá, Everton 👋</h1>
+    <p>Acompanhe seus patinetes e seus investimentos</p>
+  </header>
+
+  <!-- INÍCIO -->
+  <div id="inicio" class="tela ativa">
 
     <div class="saldo">
       <small>Saldo disponível</small>
       <h2>R$ 1.248,75</h2>
-      <button onclick="alert('Área de saque')">Sacar</button>
+
+      <button onclick="abrirTela('carteira')">
+        Sacar
+      </button>
     </div>
 
     <div class="resumo">
+
       <div class="box">
         <small>Ganhos acumulados</small>
         <strong>R$ 248,75</strong>
@@ -181,70 +214,250 @@
         <small>Total investido</small>
         <strong>R$ 1.000,00</strong>
       </div>
+
     </div>
 
-    <section>
-      <h3>Meus patinetes</h3>
+    <div style="padding:18px;">
+      <h2>Meus patinetes</h2>
 
       <div class="patinete">
 
         <img src="https://images.unsplash.com/photo-1592119432220-0a5c0c2e5c7b?auto=format&fit=crop&w=900&q=80">
 
-        <h4>🛴 PAT-001 — Patinete Urbano</h4>
+        <h3>🛴 PAT-001 — Patinete Urbano</h3>
 
         <p>Participação ativa</p>
 
-        <div class="info">
+        <div class="linha">
           <span>Valor da cota</span>
           <strong>R$ 200,00</strong>
         </div>
 
-        <div class="info">
+        <div class="linha">
           <span>Prazo</span>
           <strong>20 dias</strong>
         </div>
 
-        <button onclick="alert('Detalhes do PAT-001')">
+        <button onclick="abrirTela('detalhes')">
           Ver detalhes
         </button>
 
       </div>
 
-      <div class="patinete">
-
-        <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=900&q=80">
-
-        <h4>🛴 PAT-002 — Patinete City</h4>
-
-        <p>Disponível</p>
-
-        <div class="info">
-          <span>Valor da cota</span>
-          <strong>R$ 300,00</strong>
-        </div>
-
-        <div class="info">
-          <span>Prazo</span>
-          <strong>20 dias</strong>
-        </div>
-
-        <button onclick="alert('Detalhes do PAT-002')">
-          Ver detalhes
-        </button>
-
-      </div>
-
-    </section>
-
-    <nav>
-      <span>⌂<br>Início</span>
-      <span>🛴<br>Patinetes</span>
-      <span>💰<br>Carteira</span>
-      <span>🔔<br>Ofertas</span>
-      <span>☰<br>Menu</span>
-    </nav>
+    </div>
 
   </div>
+
+  <!-- PATINETES -->
+  <div id="patinetes" class="tela">
+
+    <h2>🛴 Patinetes</h2>
+
+    <div class="patinete">
+
+      <img src="https://images.unsplash.com/photo-1592119432220-0a5c0c2e5c7b?auto=format&fit=crop&w=900&q=80">
+
+      <h3>PAT-001 — Patinete Urbano</h3>
+
+      <p>Disponível</p>
+
+      <div class="linha">
+        <span>Valor da cota</span>
+        <strong>R$ 200,00</strong>
+      </div>
+
+      <div class="linha">
+        <span>Prazo</span>
+        <strong>20 dias</strong>
+      </div>
+
+      <button onclick="abrirTela('detalhes')">
+        Ver detalhes
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- CARTEIRA -->
+  <div id="carteira" class="tela">
+
+    <h2>💰 Minha carteira</h2>
+
+    <div class="saldo">
+
+      <small>Saldo disponível</small>
+
+      <h2>R$ 1.248,75</h2>
+
+      <button onclick="abrirSaque()">
+        Solicitar saque
+      </button>
+
+    </div>
+
+    <div class="info">
+      <small>Total investido</small>
+      <strong>R$ 1.000,00</strong>
+    </div>
+
+    <div class="info">
+      <small>Ganhos acumulados</small>
+      <strong>R$ 248,75</strong>
+    </div>
+
+  </div>
+
+  <!-- OFERTAS -->
+  <div id="ofertas" class="tela">
+
+    <h2>🎁 Ofertas</h2>
+
+    <div class="oferta">
+
+      <h3>🔥 Oferta especial</h3>
+
+      <p>
+        Nova cota disponível.
+      </p>
+
+      <br>
+
+      <strong>R$ 200,00</strong>
+
+      <br><br>
+
+      <button onclick="abrirTela('detalhes')">
+        Ver oferta
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- MENU -->
+  <div id="menu" class="tela">
+
+    <h2>☰ Menu</h2>
+
+    <div class="info">
+      <strong>Meu perfil</strong>
+    </div>
+
+    <div class="info">
+      <strong>Histórico</strong>
+    </div>
+
+    <div class="info">
+      <strong>Configurações</strong>
+    </div>
+
+  </div>
+
+  <!-- DETALHES -->
+  <div id="detalhes" class="tela">
+
+    <h2>Detalhes do patinete</h2>
+
+    <div class="patinete">
+
+      <img src="https://images.unsplash.com/photo-1592119432220-0a5c0c2e5c7b?auto=format&fit=crop&w=900&q=80">
+
+      <h3>🛴 PAT-001 — Patinete Urbano</h3>
+
+      <div class="linha">
+        <span>Valor da cota</span>
+        <strong>R$ 200,00</strong>
+      </div>
+
+      <div class="linha">
+        <span>Prazo</span>
+        <strong>20 dias</strong>
+      </div>
+
+      <div class="linha">
+        <span>Status</span>
+        <strong>Disponível</strong>
+      </div>
+
+      <div class="info">
+        <strong>Informações da cota</strong>
+        <p style="margin-top:8px;">
+          Os valores apresentados nesta tela são
+          demonstrativos do protótipo.
+        </p>
+      </div>
+
+      <br>
+
+      <button onclick="alert('Área de pagamento do protótipo')">
+        Adquirir cota
+      </button>
+
+      <br>
+
+      <button class="voltar" onclick="abrirTela('inicio')">
+        Voltar
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- MENU INFERIOR -->
+  <nav>
+
+    <button onclick="abrirTela('inicio')">
+      🏠<br>Início
+    </button>
+
+    <button onclick="abrirTela('patinetes')">
+      🛴<br>Patinetes
+    </button>
+
+    <button onclick="abrirTela('carteira')">
+      💰<br>Carteira
+    </button>
+
+    <button onclick="abrirTela('ofertas')">
+      🎁<br>Ofertas
+    </button>
+
+    <button onclick="abrirTela('menu')">
+      ☰<br>Menu
+    </button>
+
+  </nav>
+
+</div>
+
+<script>
+
+function abrirTela(nome) {
+
+  const telas = document.querySelectorAll(".tela");
+
+  telas.forEach(function(tela) {
+    tela.classList.remove("ativa");
+  });
+
+  document.getElementById(nome).classList.add("ativa");
+
+  window.scrollTo(0, 0);
+}
+
+function abrirSaque() {
+
+  alert(
+    "Área de saque\n\n" +
+    "Valor mínimo: R$ 30,00\n" +
+    "Taxa de serviço: 6%\n\n" +
+    "Esta função ainda está no protótipo."
+  );
+
+}
+
+</script>
 
 </body>
 </html>
