@@ -1,459 +1,513 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Everton Patinetes</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Everton Patinetes</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
 
-    body {
-      background: #f3f6f5;
-      color: #173b32;
-    }
+body{
+  background:#f3f6f5;
+  color:#173b32;
+}
 
-    .app {
-      max-width: 430px;
-      min-height: 100vh;
-      margin: auto;
-      background: white;
-      padding-bottom: 80px;
-    }
+.app{
+  max-width:430px;
+  min-height:100vh;
+  margin:auto;
+  background:white;
+  padding-bottom:80px;
+}
 
-    header {
-      background: #0d5c48;
-      color: white;
-      padding: 28px 20px;
-      border-radius: 0 0 24px 24px;
-    }
+header{
+  background:#0d5c48;
+  color:white;
+  padding:28px 20px;
+  border-radius:0 0 24px 24px;
+}
 
-    header h1 {
-      font-size: 24px;
-      margin-bottom: 6px;
-    }
+header h1{font-size:24px;margin-bottom:6px}
+header p{font-size:14px;opacity:.9}
 
-    header p {
-      font-size: 14px;
-      opacity: 0.9;
-    }
+.tela{
+  display:none;
+  padding:18px;
+}
 
-    .tela {
-      display: none;
-      padding: 18px;
-    }
+.tela.ativa{display:block}
 
-    .tela.ativa {
-      display: block;
-    }
+.saldo{
+  margin:18px 0;
+  padding:20px;
+  background:#e8f4ef;
+  border-radius:18px;
+}
 
-    .saldo {
-      margin: 18px;
-      padding: 20px;
-      background: #e8f4ef;
-      border-radius: 18px;
-    }
+.saldo small,.box small{
+  color:#55736a;
+}
 
-    .saldo small {
-      color: #55736a;
-    }
+.saldo h2{
+  font-size:28px;
+  margin:8px 0 15px;
+}
 
-    .saldo h2 {
-      font-size: 28px;
-      margin: 8px 0 15px;
-    }
+button{
+  border:0;
+  background:#0d5c48;
+  color:white;
+  padding:12px 18px;
+  border-radius:12px;
+  font-weight:bold;
+  cursor:pointer;
+}
 
-    button {
-      border: 0;
-      background: #0d5c48;
-      color: white;
-      padding: 12px 18px;
-      border-radius: 12px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.resumo{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin:18px 0;
+}
 
-    .resumo {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin: 18px;
-    }
+.box{
+  padding:16px;
+  background:#f3f6f5;
+  border-radius:15px;
+}
 
-    .box {
-      padding: 16px;
-      background: #f3f6f5;
-      border-radius: 15px;
-    }
+.box strong{
+  display:block;
+  margin-top:7px;
+  font-size:18px;
+}
 
-    .box small {
-      color: #71827d;
-    }
+.patinete{
+  border:1px solid #e1e8e5;
+  border-radius:18px;
+  padding:14px;
+  margin-top:15px;
+}
 
-    .box strong {
-      display: block;
-      margin-top: 7px;
-      font-size: 18px;
-    }
+.foto-patinete{
+  width:100%;
+  height:170px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#dcefe8,#f5f8f7);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:70px;
+}
 
-    .patinete {
-      border: 1px solid #e1e8e5;
-      border-radius: 18px;
-      padding: 14px;
-      margin-top: 15px;
-    }
+.patinete h3{
+  margin:12px 0 6px;
+}
 
-    .patinete img {
-      width: 100%;
-      height: 170px;
-      object-fit: cover;
-      border-radius: 14px;
-    }
+.patinete p{
+  color:#65746f;
+  font-size:14px;
+  margin-bottom:12px;
+}
 
-    .patinete h3 {
-      margin: 12px 0 6px;
-    }
+.linha{
+  display:flex;
+  justify-content:space-between;
+  margin:10px 0;
+}
 
-    .patinete p {
-      color: #65746f;
-      font-size: 14px;
-      margin-bottom: 12px;
-    }
+.info{
+  background:#f3f6f5;
+  padding:15px;
+  border-radius:15px;
+  margin-top:15px;
+}
 
-    .linha {
-      display: flex;
-      justify-content: space-between;
-      margin: 10px 0;
-    }
+.info button{
+  width:100%;
+  margin-top:10px;
+}
 
-    .oferta {
-      background: #fff4d8;
-      padding: 18px;
-      border-radius: 18px;
-      margin-top: 15px;
-    }
+.oferta{
+  background:#fff4d8;
+  padding:18px;
+  border-radius:18px;
+  margin-top:15px;
+}
 
-    .oferta h3 {
-      margin-bottom: 8px;
-    }
+.voltar{
+  background:#555;
+  margin-top:12px;
+}
 
-    .voltar {
-      background: #555;
-      margin-top: 12px;
-    }
+nav{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(430px,100%);
+  background:white;
+  border-top:1px solid #ddd;
+  display:flex;
+  justify-content:space-around;
+  padding:10px 4px;
+  z-index:100;
+}
 
-    nav {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(430px, 100%);
-      background: white;
-      border-top: 1px solid #ddd;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 4px;
-      z-index: 100;
-    }
+nav button{
+  background:transparent;
+  color:#61716c;
+  padding:5px;
+  font-size:12px;
+}
 
-    nav button {
-      background: transparent;
-      color: #61716c;
-      padding: 5px;
-      font-size: 12px;
-    }
-
-    nav button.ativo {
-      color: #0d5c48;
-      font-weight: bold;
-    }
-
-    .info {
-      background: #f3f6f5;
-      padding: 15px;
-      border-radius: 15px;
-      margin-top: 15px;
-    }
-  </style>
+h2{margin-bottom:10px}
+</style>
 </head>
 
 <body>
 
 <div class="app">
 
-  <header>
-    <h1>Olá, Everton 👋</h1>
-    <p>Acompanhe seus patinetes e seus investimentos</p>
-  </header>
-
-  <!-- INÍCIO -->
-  <div id="inicio" class="tela ativa">
-
-    <div class="saldo">
-      <small>Saldo disponível</small>
-      <h2>R$ 1.248,75</h2>
-
-      <button onclick="abrirTela('carteira')">
-        Sacar
-      </button>
-    </div>
-
-    <div class="resumo">
-
-      <div class="box">
-        <small>Ganhos acumulados</small>
-        <strong>R$ 248,75</strong>
-      </div>
-
-      <div class="box">
-        <small>Total investido</small>
-        <strong>R$ 1.000,00</strong>
-      </div>
-
-    </div>
-
-    <div style="padding:18px;">
-      <h2>Meus patinetes</h2>
-
-      <div class="patinete">
-
-        <img src="https://images.unsplash.com/photo-1592119432220-0a5c0c2e5c7b?auto=format&fit=crop&w=900&q=80">
-
-        <h3>🛴 PAT-001 — Patinete Urbano</h3>
-
-        <p>Participação ativa</p>
-
-        <div class="linha">
-          <span>Valor da cota</span>
-          <strong>R$ 200,00</strong>
-        </div>
-
-        <div class="linha">
-          <span>Prazo</span>
-          <strong>20 dias</strong>
-        </div>
-
-        <button onclick="abrirTela('detalhes')">
-          Ver detalhes
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- PATINETES -->
-  <div id="patinetes" class="tela">
-
-    <h2>🛴 Patinetes</h2>
-
-    <div class="patinete">
-
-      <img src="https://images.unsplash.com/photo-1592119432220-0a5c0c2e5c7b?auto=format&fit=crop&w=900&q=80">
-
-      <h3>PAT-001 — Patinete Urbano</h3>
-
-      <p>Disponível</p>
-
-      <div class="linha">
-        <span>Valor da cota</span>
-        <strong>R$ 200,00</strong>
-      </div>
-
-      <div class="linha">
-        <span>Prazo</span>
-        <strong>20 dias</strong>
-      </div>
-
-      <button onclick="abrirTela('detalhes')">
-        Ver detalhes
-      </button>
-
-    </div>
-
-  </div>
-
-  <!-- CARTEIRA -->
-  <div id="carteira" class="tela">
-
-    <h2>💰 Minha carteira</h2>
-
-    <div class="saldo">
-
-      <small>Saldo disponível</small>
-
-      <h2>R$ 1.248,75</h2>
-
-      <button onclick="abrirSaque()">
-        Solicitar saque
-      </button>
-
-    </div>
-
-    <div class="info">
-      <small>Total investido</small>
-      <strong>R$ 1.000,00</strong>
-    </div>
-
-    <div class="info">
-      <small>Ganhos acumulados</small>
-      <strong>R$ 248,75</strong>
-    </div>
-
-  </div>
-
-  <!-- OFERTAS -->
-  <div id="ofertas" class="tela">
-
-    <h2>🎁 Ofertas</h2>
-
-    <div class="oferta">
-
-      <h3>🔥 Oferta especial</h3>
-
-      <p>
-        Nova cota disponível.
-      </p>
-
-      <br>
-
-      <strong>R$ 200,00</strong>
-
-      <br><br>
-
-      <button onclick="abrirTela('detalhes')">
-        Ver oferta
-      </button>
-
-    </div>
-
-  </div>
-
-  <!-- MENU -->
-  <div id="menu" class="tela">
-
-    <h2>☰ Menu</h2>
-
-    <div class="info">
-      <strong>Meu perfil</strong>
-    </div>
-
-    <div class="info">
-      <strong>Histórico</strong>
-    </div>
-
-    <div class="info">
-      <strong>Configurações</strong>
-    </div>
-
-  </div>
-
-  <!-- DETALHES -->
-  <div id="detalhes" class="tela">
-
-    <h2>Detalhes do patinete</h2>
-
-    <div class="patinete">
-
-      <img src="https://images.unsplash.com/photo-1592119432220-0a5c0c2e5c7b?auto=format&fit=crop&w=900&q=80">
-
-      <h3>🛴 PAT-001 — Patinete Urbano</h3>
-
-      <div class="linha">
-        <span>Valor da cota</span>
-        <strong>R$ 200,00</strong>
-      </div>
-
-      <div class="linha">
-        <span>Prazo</span>
-        <strong>20 dias</strong>
-      </div>
-
-      <div class="linha">
-        <span>Status</span>
-        <strong>Disponível</strong>
-      </div>
-
-      <div class="info">
-        <strong>Informações da cota</strong>
-        <p style="margin-top:8px;">
-          Os valores apresentados nesta tela são
-          demonstrativos do protótipo.
-        </p>
-      </div>
-
-      <br>
-
-      <button onclick="alert('Área de pagamento do protótipo')">
-        Adquirir cota
-      </button>
-
-      <br>
-
-      <button class="voltar" onclick="abrirTela('inicio')">
-        Voltar
-      </button>
-
-    </div>
-
-  </div>
-
-  <!-- MENU INFERIOR -->
-  <nav>
-
-    <button onclick="abrirTela('inicio')">
-      🏠<br>Início
-    </button>
-
-    <button onclick="abrirTela('patinetes')">
-      🛴<br>Patinetes
-    </button>
-
-    <button onclick="abrirTela('carteira')">
-      💰<br>Carteira
-    </button>
-
-    <button onclick="abrirTela('ofertas')">
-      🎁<br>Ofertas
-    </button>
-
-    <button onclick="abrirTela('menu')">
-      ☰<br>Menu
-    </button>
-
-  </nav>
+<header>
+<h1>Olá, Everton 👋</h1>
+<p>Acompanhe seus patinetes e seus investimentos</p>
+</header>
+
+<!-- INÍCIO -->
+<div id="inicio" class="tela ativa">
+
+<div class="saldo">
+<small>Saldo disponível</small>
+<h2>R$ 1.248,75</h2>
+<button onclick="abrirTela('carteira')">Sacar</button>
+</div>
+
+<div class="resumo">
+
+<div class="box">
+<small>Ganhos acumulados</small>
+<strong>R$ 248,75</strong>
+</div>
+
+<div class="box">
+<small>Total investido</small>
+<strong>R$ 1.000,00</strong>
+</div>
 
 </div>
 
+<h2>Meus patinetes</h2>
+
+<div class="patinete">
+
+<div class="foto-patinete">🛴</div>
+
+<h3>PAT-001 — Patinete Urbano</h3>
+<p>Participação ativa</p>
+
+<div class="linha">
+<span>Valor da cota</span>
+<strong>R$ 200,00</strong>
+</div>
+
+<div class="linha">
+<span>Prazo</span>
+<strong>20 dias</strong>
+</div>
+
+<button onclick="abrirTela('detalhes')">Ver detalhes</button>
+
+</div>
+
+</div>
+
+
+<!-- PATINETES -->
+<div id="patinetes" class="tela">
+
+<h2>🛴 Patinetes</h2>
+
+<div class="patinete">
+
+<div class="foto-patinete">🛴</div>
+
+<h3>PAT-001 — Patinete Urbano</h3>
+<p>Disponível</p>
+
+<div class="linha">
+<span>Valor da cota</span>
+<strong>R$ 200,00</strong>
+</div>
+
+<div class="linha">
+<span>Prazo</span>
+<strong>20 dias</strong>
+</div>
+
+<button onclick="abrirTela('detalhes')">Ver detalhes</button>
+
+</div>
+
+</div>
+
+
+<!-- CARTEIRA -->
+<div id="carteira" class="tela">
+
+<h2>💰 Minha carteira</h2>
+
+<div class="saldo">
+<small>Saldo disponível</small>
+<h2>R$ 1.248,75</h2>
+<button onclick="abrirSaque()">Solicitar saque</button>
+</div>
+
+<div class="info">
+<small>Total investido</small>
+<strong>R$ 1.000,00</strong>
+</div>
+
+<div class="info">
+<small>Ganhos acumulados</small>
+<strong>R$ 248,75</strong>
+</div>
+
+</div>
+
+
+<!-- OFERTAS -->
+<div id="ofertas" class="tela">
+
+<h2>🎁 Ofertas</h2>
+
+<div class="oferta">
+
+<h3>🔥 Oferta especial</h3>
+
+<p>Nova cota disponível.</p>
+
+<br>
+
+<strong>R$ 200,00</strong>
+
+<br><br>
+
+<button onclick="abrirTela('detalhes')">
+Ver oferta
+</button>
+
+</div>
+
+</div>
+
+
+<!-- MENU -->
+<div id="menu" class="tela">
+
+<h2>☰ Menu</h2>
+
+<div class="info">
+<strong>Meu perfil</strong>
+<br><br>
+<button onclick="abrirTela('perfil')">Abrir</button>
+</div>
+
+<div class="info">
+<strong>Histórico</strong>
+<br><br>
+<button onclick="abrirTela('historico')">Abrir</button>
+</div>
+
+<div class="info">
+<strong>Configurações</strong>
+<br><br>
+<button onclick="abrirTela('configuracoes')">Abrir</button>
+</div>
+
+</div>
+
+
+<!-- PERFIL -->
+<div id="perfil" class="tela">
+
+<h2>👤 Meu perfil</h2>
+
+<div class="info">
+<p><strong>Nome</strong></p>
+<p style="margin-top:8px;">Everton</p>
+</div>
+
+<div class="info">
+<p><strong>E-mail</strong></p>
+<p style="margin-top:8px;">everton@email.com</p>
+</div>
+
+<div class="info">
+<p><strong>Status da conta</strong></p>
+<p style="margin-top:8px;">Ativa</p>
+</div>
+
+<button class="voltar" onclick="abrirTela('menu')">
+Voltar
+</button>
+
+</div>
+
+
+<!-- HISTÓRICO -->
+<div id="historico" class="tela">
+
+<h2>📋 Histórico</h2>
+
+<div class="info">
+<strong>Compra de participação</strong>
+<p style="margin-top:8px;">PAT-001</p>
+<p style="margin-top:5px;">R$ 200,00</p>
+</div>
+
+<div class="info">
+<strong>Ganho acumulado</strong>
+<p style="margin-top:8px;">R$ 248,75</p>
+</div>
+
+<button class="voltar" onclick="abrirTela('menu')">
+Voltar
+</button>
+
+</div>
+
+
+<!-- CONFIGURAÇÕES -->
+<div id="configuracoes" class="tela">
+
+<h2>⚙️ Configurações</h2>
+
+<div class="info">
+<strong>Notificações</strong>
+<p style="margin-top:8px;">Ativadas</p>
+</div>
+
+<div class="info">
+<strong>Segurança</strong>
+<p style="margin-top:8px;">Configurações da conta</p>
+</div>
+
+<div class="info">
+<strong>Preferências</strong>
+<p style="margin-top:8px;">Português — Brasil</p>
+</div>
+
+<button class="voltar" onclick="abrirTela('menu')">
+Voltar
+</button>
+
+</div>
+
+
+<!-- DETALHES -->
+<div id="detalhes" class="tela">
+
+<h2>Detalhes do patinete</h2>
+
+<div class="patinete">
+
+<div class="foto-patinete">🛴</div>
+
+<h3>PAT-001 — Patinete Urbano</h3>
+
+<div class="linha">
+<span>Valor da cota</span>
+<strong>R$ 200,00</strong>
+</div>
+
+<div class="linha">
+<span>Prazo</span>
+<strong>20 dias</strong>
+</div>
+
+<div class="linha">
+<span>Status</span>
+<strong>Disponível</strong>
+</div>
+
+<div class="info">
+<strong>Informações da cota</strong>
+<p style="margin-top:8px;">
+Os valores apresentados nesta tela são demonstrativos do protótipo.
+</p>
+</div>
+
+<br>
+
+<button onclick="alert('Área de pagamento do protótipo')">
+Adquirir cota
+</button>
+
+<br>
+
+<button class="voltar" onclick="abrirTela('inicio')">
+Voltar
+</button>
+
+</div>
+
+</div>
+
+
+<!-- NAVEGAÇÃO -->
+<nav>
+
+<button onclick="abrirTela('inicio')">
+🏠<br>Início
+</button>
+
+<button onclick="abrirTela('patinetes')">
+🛴<br>Patinetes
+</button>
+
+<button onclick="abrirTela('carteira')">
+💰<br>Carteira
+</button>
+
+<button onclick="abrirTela('ofertas')">
+🎁<br>Ofertas
+</button>
+
+<button onclick="abrirTela('menu')">
+☰<br>Menu
+</button>
+
+</nav>
+
+</div>
+
+
 <script>
 
-function abrirTela(nome) {
+function abrirTela(nome){
 
-  const telas = document.querySelectorAll(".tela");
+const telas=document.querySelectorAll(".tela");
 
-  telas.forEach(function(tela) {
-    tela.classList.remove("ativa");
-  });
+telas.forEach(function(tela){
+tela.classList.remove("ativa");
+});
 
-  document.getElementById(nome).classList.add("ativa");
+document.getElementById(nome).classList.add("ativa");
 
-  window.scrollTo(0, 0);
+window.scrollTo(0,0);
+
 }
 
-function abrirSaque() {
+function abrirSaque(){
 
-  alert(
-    "Área de saque\n\n" +
-    "Valor mínimo: R$ 30,00\n" +
-    "Taxa de serviço: 6%\n\n" +
-    "Esta função ainda está no protótipo."
-  );
+alert(
+"Área de saque\n\n"+
+"Valor mínimo: R$ 30,00\n"+
+"Taxa de serviço: 6%\n\n"+
+"Esta função ainda está no protótipo."
+);
 
 }
 
